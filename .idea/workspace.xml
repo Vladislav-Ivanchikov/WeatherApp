@@ -20,11 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a85faf1-d19b-4be8-9603-67392d84f4a6" name="Default Changelist" comment="second">
+      <change afterPath="$PROJECT_DIR$/src/.gitignore.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/src/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/createOptions" beforeDir="false" afterPath="$PROJECT_DIR$/src/createOptions" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/createOptions" beforeDir="false" afterPath="$PROJECT_DIR$/src/createOptions.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,9 +54,9 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Desktop\Level0\src" />
       <recent name="D:\Desktop\Level0\src\assets" />
       <recent name="D:\Desktop\Level0\src\assets\fonts" />
-      <recent name="D:\Desktop\Level0\src" />
       <recent name="D:\Desktop\Level0\dist" />
     </key>
   </component>
@@ -133,7 +132,7 @@
       <workItem from="1636702894134" duration="1445000" />
       <workItem from="1636704360021" duration="188000" />
       <workItem from="1636704564547" duration="14079000" />
-      <workItem from="1636812384936" duration="13871000" />
+      <workItem from="1636812384936" duration="14692000" />
     </task>
     <task id="LOCAL-00001" summary="second">
       <created>1636703747947</created>
@@ -177,10 +176,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="178" width="816" height="734" key="#Intentions/0.0.1920.1040@0.0.1920.1040" timestamp="1636714257851" />
-    <state x="606" y="319" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1636713192616">
+    <state x="362" y="384" key="#Notifications" timestamp="1636975674453">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="606" y="319" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1636713192616" />
+    <state x="362" y="384" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1636975674453" />
+    <state x="606" y="319" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1636975661772">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="606" y="319" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1636975661772" />
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1634743024557">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
