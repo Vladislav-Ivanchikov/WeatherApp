@@ -1,7 +1,8 @@
 import "./styles/styles.css"
-import { wrap, input, navWrap, searchBtn, themeBtn, createTemplate } from './createTemplate'
+import {wrap, input, navWrap, searchBtn, themeBtn, createTemplate} from './createTemplate'
 import createOptions from "./createOptions";
 import router from "./router";
+
 export {API_KEY, city, dataList, isDark, showHome, showFavorites}
 
 const API_KEY = '3a1c537e919545d1bf9114546212110';
@@ -16,7 +17,7 @@ export function init() {
     fetch(`http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}`)
         .then(response => response.json())
         .then(data => {
-            if(data){
+            if (data) {
                 createTemplate(data)
             }
         })
@@ -37,20 +38,24 @@ function search() {
 
 input.oninput = () => {
     city = input.value
-    fetch(`https://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${city}`)
-        .then(response => {
+    if (city) {
+        fetch(`https://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${city}`)
+            .then(response => {
                 if (response.ok) {
+                    let newOption
                     response.json()
                         .then(data => {
-                            let newOption = filter(input.value, data)
-                            createOptions(newOption)
+                            newOption = filter(input.value, data)
+                            newOption.map(item => {
+                                if (item.name)
+                                    createOptions(data)
+                            })
                         })
                 } else {
                     alert('Data not load')
                 }
-            }
-        )
-
+            })
+    }
 }
 
 input.onchange = () => {
@@ -70,7 +75,7 @@ function changeTheme() {
     init()
 }
 
-function addCity () {
+function addCity() {
     search()
     const favCity = new City(city, app)
     app.addCity(favCity)
@@ -106,14 +111,13 @@ class App {
         this.cities.push(city)
         this.render()
         this.saveIntoStorage()
-        console.log(city)
     }
 
     removeCity(city) {
+        console.log(city)
         this.cities = this.cities.filter(item => {
-            console.log(item.name)
-            console.log(city.name)
-            return item.name !== city.name
+            console.log(item.name.match(/^\w+/)[0])
+            return item.name.match(/^\w+/)[0] !== city
         })
         // const indexToDel = this.cities.findIndex(item => {
         //     return item.name === city.name
@@ -135,13 +139,12 @@ class App {
 }
 
 class City {
-    constructor(name, app) {
+    constructor(name) {
         this.name = name
-        this.app = app
     }
 
     async getWeather() {
-        if (this.name){
+        if (this.name) {
             const res = await fetch(`http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${this.name}`)
                 .then(resp => resp.json())
             return res.current
@@ -153,28 +156,23 @@ class City {
         if (data) {
             const cityCard = document.createElement('div')
             cityCard.classList.add('city-card')
+
             cityCard.innerHTML = `
-           <div class="city-name">${this.name}</div>
+           <div class="city-name">${this.name.match(/^\w+/)}</div>
         <div class="city-cond">
             <img src=${data.condition.icon} alt="icon">
         </div>
-        <div class="city-temp">${Math.floor(data.temp_c)}°C</div> 
+        <div class="city-temp">${Math.floor(data.temp_c)} °C</div> 
         <div>
-            <img class="city-delete" src=${closeCross} alt="x">
+            <img class="city-delete" src=${closeCross} data-value=${this.name.match(/^\w+/)} alt="x">
         </div>
         `
             favorWrap.appendChild(cityCard)
-            const deleteBtn = document.querySelectorAll('.city-delete')
-            deleteBtn.forEach(item => item.addEventListener('click', () => {
-                this.app.removeCity(this)
-                init()
-            }))
 
             const cityName = document.querySelectorAll('.city-name')
             cityName.forEach(c => {
                 c.addEventListener('click', e => {
                     city = e.target.innerText
-                    init()
                     showHome()
                 })
             })
@@ -185,6 +183,11 @@ class City {
         return {name: this.name}
     }
 }
+
+favorites.addEventListener('click', (e) => {
+    app.removeCity(e.target.dataset.value)
+    init()
+})
 
 const app = new App(favorites)
 
