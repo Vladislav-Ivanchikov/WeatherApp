@@ -1,11 +1,12 @@
 import {API_KEY, city, isDark} from './data'
 
+export { wrap, input, navWrap, searchBtn, themeBtn, createTemplate, isDark }
+
 const wrap = document.getElementById('wrap')
 const input = document.getElementById('search-city')
 const navWrap = document.getElementById('nav')
 const searchBtn = document.getElementById('btn')
 const themeBtn = document.getElementById('theme-btn')
-
 
 function createTemplate(data) {
     while (wrap.firstChild) {
@@ -130,6 +131,3 @@ function createTemplate(data) {
         document.querySelectorAll('.city-temp').forEach(i => i.classList.remove('dark'))
     }
 }
-
-
-export { API_KEY, city, wrap, input, navWrap, searchBtn, themeBtn, isDark, createTemplate }

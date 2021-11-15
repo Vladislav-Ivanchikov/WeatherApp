@@ -1,7 +1,4 @@
 {
-  "rules": {
-    "no-undef": "warn"
-  },
   "env": {
     "es6": true,
     "browser": true
@@ -12,5 +9,8 @@
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 8
+  },
+  "rules": {
+    "no-undef": "warn"
   }
 }

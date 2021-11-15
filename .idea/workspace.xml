@@ -19,7 +19,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0a85faf1-d19b-4be8-9603-67392d84f4a6" name="Default Changelist" comment="" />
+    <list default="true" id="0a85faf1-d19b-4be8-9603-67392d84f4a6" name="Default Changelist" comment="second">
+      <change afterPath="$PROJECT_DIR$/src/createOptions" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/router.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/.eslintrc" beforeDir="false" afterPath="$PROJECT_DIR$/src/.eslintrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/createTemplate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/createTemplate.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/styles.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,9 +45,15 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="settings.webpack" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -118,8 +132,19 @@
       <workItem from="1636640001647" duration="3242000" />
       <workItem from="1636643420949" duration="1722000" />
       <workItem from="1636645645392" duration="947000" />
-      <workItem from="1636702894134" duration="738000" />
+      <workItem from="1636702894134" duration="1445000" />
+      <workItem from="1636704360021" duration="188000" />
+      <workItem from="1636704564547" duration="14079000" />
+      <workItem from="1636812384936" duration="1921000" />
     </task>
+    <task id="LOCAL-00001" summary="second">
+      <created>1636703747947</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1636703747947</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,15 +162,27 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="second" />
+    <option name="LAST_COMMIT_MESSAGE" value="second" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="586" y="198" key="#Inspections" timestamp="1635324483266">
+    <state x="823" y="428" key="#ESLint" timestamp="1636713470991">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="586" y="198" key="#Inspections/0.0.1920.1040@0.0.1920.1040" timestamp="1635324483266" />
-    <state x="606" y="319" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1634741025285">
+    <state x="823" y="428" key="#ESLint/0.0.1920.1040@0.0.1920.1040" timestamp="1636713470991" />
+    <state x="586" y="198" key="#Inspections" timestamp="1636715569836">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="606" y="319" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1634741025285" />
+    <state x="586" y="198" key="#Inspections/0.0.1920.1040@0.0.1920.1040" timestamp="1636715569836" />
+    <state x="552" y="178" width="816" height="734" key="#Intentions" timestamp="1636714257851">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="178" width="816" height="734" key="#Intentions/0.0.1920.1040@0.0.1920.1040" timestamp="1636714257851" />
+    <state x="606" y="319" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1636713192616">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="606" y="319" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1636713192616" />
     <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1634743024557">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -170,10 +207,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="60" y="257" key="IDE.errors.dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1634750267131" />
-    <state x="616" y="240" key="run.anything.popup" timestamp="1636625180054">
+    <state x="0" y="167" key="SettingsEditor" timestamp="1636704539033">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1636625180054" />
+    <state x="0" y="167" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1636704539033" />
+    <state x="280" y="432" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1636703694294">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="280" y="432" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1636703694294" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1636962625346">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1636962625346" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1636621897576">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

@@ -1,19 +1,18 @@
 import "./styles/styles.css"
 import { wrap, input, navWrap, searchBtn, themeBtn, createTemplate } from './createTemplate'
+import createOptions from "./createOptions";
+import router from "./router";
+export {API_KEY, city, dataList, isDark, showHome, showFavorites}
 
 const API_KEY = '3a1c537e919545d1bf9114546212110';
 let city = 'gomel';
 let isDark = false;
-export {API_KEY, city, isDark}
-
 const closeCross = 'https://cdn-icons.flaticon.com/png/512/656/premium/656958.png?token=exp=1635848007~hmac=ea047b966e3cefad02516927880ae3b5'
 
 let favorites = document.getElementById('favorites')
 const dataList = document.getElementById('city')
 
-let listID = 0
-
-function init() {
+export function init() {
     fetch(`http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}`)
         .then(response => response.json())
         .then(data => {
@@ -27,18 +26,6 @@ function init() {
         })
 }
 
-function createOptions(data) {
-    dataList.innerHTML = ''
-    if (data) {
-        for (let i = 0; i < 3; i++) {
-            let option = document.createElement('option')
-            option.value = data[i].name
-            option.text = data[i].name
-            dataList.appendChild(option)
-        }
-    }
-}
-
 function filter(val, data) {
     return data.filter(i => i.name.toLowerCase().indexOf(val.toLowerCase()) !== -1)
 }
@@ -47,19 +34,6 @@ function search() {
     city = input.value
     init()
 }
-
-function changeTheme() {
-    if (document.body.className === 'dark') {
-        themeBtn.innerText = 'Light'
-        isDark = false
-    } else {
-        themeBtn.innerText = 'Dark'
-        isDark = true
-    }
-    init()
-}
-
-themeBtn.addEventListener('click', changeTheme)
 
 input.oninput = () => {
     city = input.value
@@ -85,11 +59,21 @@ input.onchange = () => {
     }
 }
 
+function changeTheme() {
+    if (document.body.className === 'dark') {
+        themeBtn.innerText = 'Dark'
+        isDark = false
+    } else {
+        themeBtn.innerText = 'Light'
+        isDark = true
+    }
+    init()
+}
+
 function addCity () {
     search()
-    const favCity = new City(city, app, listID++)
+    const favCity = new City(city, app)
     app.addCity(favCity)
-    init()
     showHome()
     input.value = ''
 }
@@ -104,6 +88,8 @@ window.addEventListener('keydown', (e) => {
     }
 })
 
+themeBtn.addEventListener('click', changeTheme)
+
 class App {
     constructor(el) {
         this.el = el
@@ -112,31 +98,35 @@ class App {
         if (citiesJson) {
             cities = JSON.parse(citiesJson)
         }
-        this.cities =  cities.map(c => new City(c.name, this, listID))
+        this.cities = cities.map(city => new City(city.name, this))
         this.render()
     }
 
-    addCity(c) {
-        this.cities.push(c)
+    addCity(city) {
+        this.cities.push(city)
+        this.render()
         this.saveIntoStorage()
-        this.render()
-        console.log(this.cities)
+        console.log(city)
     }
 
-    removeCity(id) {
-        // this.cities = this.cities.filter(item => item.name !== c.name)
-        const indexToDel = this.cities.findIndex(item => {
-            return item.id === id
+    removeCity(city) {
+        this.cities = this.cities.filter(item => {
+            console.log(item.name)
+            console.log(city.name)
+            return item.name !== city.name
         })
-        this.cities.splice(indexToDel, 1)
-        this.saveIntoStorage()
+        // const indexToDel = this.cities.findIndex(item => {
+        //     return item.name === city.name
+        // })
+        // this.cities.splice(indexToDel, 1)
         this.render()
+        this.saveIntoStorage()
         console.log(this.cities);
     }
 
     render() {
         this.el.innerHTML = ''
-        this.cities.forEach(city => city.render(this.el))
+        this.cities.map(city => city.render(this.el))
     }
 
     saveIntoStorage() {
@@ -145,8 +135,7 @@ class App {
 }
 
 class City {
-    constructor(name, app, id) {
-        this.id = id
+    constructor(name, app) {
         this.name = name
         this.app = app
     }
@@ -159,7 +148,7 @@ class City {
         }
     }
 
-    async render(ctr) {
+    async render(favorWrap) {
         const data = await this.getWeather()
         if (data) {
             const cityCard = document.createElement('div')
@@ -174,17 +163,12 @@ class City {
             <img class="city-delete" src=${closeCross} alt="x">
         </div>
         `
-            ctr.appendChild(cityCard)
-
+            favorWrap.appendChild(cityCard)
             const deleteBtn = document.querySelectorAll('.city-delete')
-            for (let i = 0; i < deleteBtn.length; i++) {
-                deleteBtn[i].id = `${i}`
-                deleteBtn[i].addEventListener('click', (e) => {
-                    console.log(e.target.id)
-                    this.app.removeCity(e.target.id)
-                    init()
-                })
-            }
+            deleteBtn.forEach(item => item.addEventListener('click', () => {
+                this.app.removeCity(this)
+                init()
+            }))
 
             const cityName = document.querySelectorAll('.city-name')
             cityName.forEach(c => {
@@ -194,7 +178,6 @@ class City {
                     showHome()
                 })
             })
-
         }
     }
 
@@ -205,30 +188,9 @@ class City {
 
 const app = new App(favorites)
 
-function router(location) {
-    switch (location) {
-        case '#/':
-        case ''  :
-            init()
-            showHome()
-            break
-        case '#/favorites' :
-            showFavorites()
-            break
-    }
-}
-
-navWrap.addEventListener('click', (el) => {
-    const location = el.target.dataset.href
-    if (location) {
-        router(location)
-    }
-})
-
 function showFavorites() {
     favorites.classList.remove('hide')
     wrap.classList.add('hide')
-
 }
 
 function showHome() {
@@ -239,4 +201,11 @@ function showHome() {
 window.addEventListener('load', () => {
     const location = window.location.hash
     router(location)
+})
+
+navWrap.addEventListener('click', (el) => {
+    const location = el.target.dataset.href
+    if (location) {
+        router(location)
+    }
 })

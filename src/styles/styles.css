@@ -363,6 +363,130 @@ input.dark::placeholder {
     }
 }
 
+
+@media (min-device-width: 320px) and (max-device-width: 568px) {
+    .nav {
+        height: 42px;
+    }
+    #theme-btn, a {
+        font-size: 16px;
+    }
+    .container {
+        padding-top: 42px;
+    }
+    .search-wrap {
+        display: flex;
+        justify-content: center;
+        height: 100%;
+        margin: 10px 0 10px 0;
+    }
+
+    input {
+        height: 28px;
+        width: 200px;
+        margin: 18px 10px 18px 5px;
+        font-size: 18px;
+    }
+
+    #btn {
+        height: 28px;
+        width: 100px;
+        padding: 0;
+        color: rgb(247, 252, 255);
+        margin: 18px 0;
+    }
+
+    .weather-wrap {
+        height: 100%;
+        margin-bottom: 0;
+        flex-wrap: wrap;
+    }
+
+    .weather-item {
+        width: 50%;
+        margin-bottom: 24px;
+    }
+
+    .wrap {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .city, .condition  {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .temp {
+        margin: 10px auto;
+        font-size: 24px;
+    }
+
+    .w_icon {
+        width: 100px;
+    }
+
+    .values {
+        font-size: 16px;
+        width: auto;
+    }
+
+    .values:nth-child(2n) {
+        margin: 5px;
+    }
+
+    .forecast-wrap {
+        height: auto;
+    }
+
+    .forecast-item {
+        width: 25%;
+    }
+
+    .day, .forecast-temp {
+        font-size: 16px;
+    }
+
+    .f_icon {
+        width: 42px;
+    }
+
+    .icon {
+        margin: 10px;
+    }
+
+    input::placeholder {
+        font-size: 16px;
+    }
+
+    .favorites {
+        flex-direction: column;
+    }
+
+    .city-card {
+        width: 100%;
+        padding: 10px 0;
+        margin: 0 0 10px 0;
+    }
+
+    .city-name {
+        font-size: 14px;
+        padding: 10px;
+    }
+    .city-temp {
+        font-size: 18px ;
+    }
+    .city-cond {
+        display: none;
+    }
+    .city-delete {
+        opacity: 1;
+        width: 10px;
+    }
+}
+
 @media (min-device-width: 375px) and (max-device-width: 667px) {
 
     .nav {
@@ -483,128 +607,7 @@ input.dark::placeholder {
     }
     .city-delete {
         opacity: 1;
-    }
-}
-
-@media (min-device-width: 320px) and (max-device-width: 568px) {
-    .nav {
-        height: 42px;
-    }
-    #theme-btn, a {
-        font-size: 16px;
-    }
-    .container {
-        padding-top: 42px;
-    }
-    .search-wrap {
-        display: flex;
-        justify-content: center;
-        height: 100%;
-        margin: 20px 0 20px 0;
-    }
-
-    input {
-        height: 28px;
-        width: 200px;
-        margin: 18px 10px 18px 5px;
-        font-size: 18px;
-    }
-
-    #btn {
-        height: 28px;
-        width: 100px;
-        padding: 0;
-        color: rgb(247, 252, 255);
-        margin: 18px 0;
-    }
-
-    .weather-wrap {
-        height: 100%;
-        margin-bottom: 0;
-        flex-wrap: wrap;
-    }
-
-    .weather-item {
-        width: 50%;
-        margin-bottom: 56px;
-    }
-
-    .wrap {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-    }
-
-    .city, .condition  {
-        font-size: 18px;
-        text-align: center;
-    }
-
-    .temp {
-        margin: 10px auto;
-        font-size: 24px;
-    }
-
-    .w_icon {
-        width: 100px;
-    }
-
-    .values {
-        font-size: 16px;
-        width: auto;
-    }
-
-    .values:nth-child(2n) {
-        margin: 5px;
-    }
-
-    .forecast-wrap {
-        height: auto;
-    }
-
-    .forecast-item {
-        width: 25%;
-    }
-
-    .day, .forecast-temp {
-        font-size: 16px;
-    }
-
-    .f_icon {
-        width: 42px;
-    }
-
-    .icon {
-        margin: 10px;
-    }
-
-    input::placeholder {
-        font-size: 16px;
-    }
-
-    .favorites {
-        flex-direction: column;
-    }
-
-    .city-card {
-        width: 100%;
-        padding: 10px 0;
-        margin: 0 0 10px 0;
-    }
-
-    .city-name {
-        font-size: 16px;
-        padding: 10px;
-    }
-    .city-temp {
-        font-size: 24px ;
-    }
-    .city-cond {
-        display: none;
-    }
-    .city-delete {
-        opacity: 1;
+        width: 10px;
     }
 }
 

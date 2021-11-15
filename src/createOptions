@@ -1,0 +1,13 @@
+import {dataList} from "./data";
+
+export default function createOptions(data) {
+    dataList.innerHTML = ''
+    if (data) {
+        for (let i = 0; i < 3; i++) {
+            let option = document.createElement('option')
+            option.value = data[i].name
+            option.text = data[i].name
+            dataList.appendChild(option)
+        }
+    }
+}
