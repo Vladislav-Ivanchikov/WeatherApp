@@ -1,10 +1,7 @@
 import "./styles/styles.css"
-import {wrap, input, navWrap, searchBtn, themeBtn, createTemplate} from './createTemplate'
-import createOptions from "./createOptions";
+import {wrap, navWrap, searchBtn, themeBtn, createTemplate} from './createTemplate'
 import router from "./router";
-
-export {API_KEY, city, dataList, isDark, showHome, showFavorites}
-
+import createOptions from './createOptions'
 const API_KEY = '3a1c537e919545d1bf9114546212110';
 let city = 'gomel';
 let isDark = false;
@@ -12,6 +9,7 @@ const closeCross = 'https://cdn-icons.flaticon.com/png/512/656/premium/656958.pn
 
 let favorites = document.getElementById('favorites')
 const dataList = document.getElementById('city')
+const input = document.getElementById('search-city')
 
 export function init() {
     fetch(`http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}`)
@@ -36,128 +34,63 @@ function search() {
     init()
 }
 
-input.oninput = () => {
-    city = input.value
-    if (city) {
-        fetch(`https://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${city}`)
-            .then(response => {
-                if (response.ok) {
-                    let newOption
-                    response.json()
-                        .then(data => {
-                            newOption = filter(input.value, data)
-                            newOption.map(item => {
-                                if (item.name)
-                                    createOptions(data)
-                            })
-                        })
-                } else {
-                    alert('Data not load')
-                }
+window.onload = () => {
+    class App {
+        constructor(el) {
+            this.el = el
+            const citiesJson = localStorage.getItem('cities')
+            let cities = []
+            if (citiesJson) {
+                cities = JSON.parse(citiesJson)
+            }
+            this.cities = cities.map(city => new City(city.name, this))
+            this.render()
+        }
+
+        addCity(city) {
+            this.cities.push(city)
+            this.render()
+            this.saveIntoStorage()
+        }
+
+        removeCity(city) {
+            this.cities = this.cities.filter(item => {
+                return item.name.match(/^\w+/)[0] !== city
             })
-    }
-}
-
-input.onchange = () => {
-    while (dataList.firstChild) {
-        dataList.removeChild(dataList.firstChild)
-    }
-}
-
-function changeTheme() {
-    if (document.body.className === 'dark') {
-        themeBtn.innerText = 'Dark'
-        isDark = false
-    } else {
-        themeBtn.innerText = 'Light'
-        isDark = true
-    }
-    init()
-}
-
-function addCity() {
-    search()
-    const favCity = new City(city, app)
-    app.addCity(favCity)
-    showHome()
-    input.value = ''
-}
-
-searchBtn.addEventListener('click', () => {
-    addCity()
-})
-
-window.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-        addCity()
-    }
-})
-
-themeBtn.addEventListener('click', changeTheme)
-
-class App {
-    constructor(el) {
-        this.el = el
-        const citiesJson = localStorage.getItem('cities')
-        let cities = []
-        if (citiesJson) {
-            cities = JSON.parse(citiesJson)
+            this.render()
+            this.saveIntoStorage()
         }
-        this.cities = cities.map(city => new City(city.name, this))
-        this.render()
-    }
 
-    addCity(city) {
-        this.cities.push(city)
-        this.render()
-        this.saveIntoStorage()
-    }
+        render() {
+            this.el.innerHTML = ''
+            this.cities.map(city => city.render(this.el))
+        }
 
-    removeCity(city) {
-        console.log(city)
-        this.cities = this.cities.filter(item => {
-            console.log(item.name.match(/^\w+/)[0])
-            return item.name.match(/^\w+/)[0] !== city
-        })
-        // const indexToDel = this.cities.findIndex(item => {
-        //     return item.name === city.name
-        // })
-        // this.cities.splice(indexToDel, 1)
-        this.render()
-        this.saveIntoStorage()
-        console.log(this.cities);
-    }
-
-    render() {
-        this.el.innerHTML = ''
-        this.cities.map(city => city.render(this.el))
-    }
-
-    saveIntoStorage() {
-        localStorage.setItem('cities', JSON.stringify(this.cities))
-    }
-}
-
-class City {
-    constructor(name) {
-        this.name = name
-    }
-
-    async getWeather() {
-        if (this.name) {
-            const res = await fetch(`http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${this.name}`)
-                .then(resp => resp.json())
-            return res.current
+        saveIntoStorage() {
+            localStorage.setItem('cities', JSON.stringify(this.cities))
         }
     }
 
-    async render(favorWrap) {
-        const data = await this.getWeather()
-        if (data) {
-            const cityCard = document.createElement('div')
-            cityCard.classList.add('city-card')
+    class City {
+        constructor(name) {
+            this.name = name
+        }
 
-            cityCard.innerHTML = `
+        async getWeather() {
+            if (this.name) {
+                const res = await fetch(`http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${this.name}`)
+                    .then(resp => resp.json())
+                return res.current
+            }
+        }
+
+        async render(favorWrap) {
+            const data = await this.getWeather()
+            if (data) {
+                const cityCard = document.createElement('div')
+                cityCard.classList.add('city-card')
+
+                cityCard.innerHTML = `
            <div class="city-name">${this.name.match(/^\w+/)}</div>
         <div class="city-cond">
             <img src=${data.condition.icon} alt="icon">
@@ -167,29 +100,96 @@ class City {
             <img class="city-delete" src=${closeCross} data-value=${this.name.match(/^\w+/)} alt="x">
         </div>
         `
-            favorWrap.appendChild(cityCard)
+                favorWrap.appendChild(cityCard)
 
-            const cityName = document.querySelectorAll('.city-name')
-            cityName.forEach(c => {
-                c.addEventListener('click', e => {
-                    city = e.target.innerText
-                    showHome()
+                const cityName = document.querySelectorAll('.city-name')
+                cityName.forEach(c => {
+                    c.addEventListener('click', e => {
+                        city = e.target.innerText
+                        showHome()
+                    })
                 })
-            })
+            }
+        }
+
+        toJSON() {
+            return {name: this.name}
         }
     }
 
-    toJSON() {
-        return {name: this.name}
+    const app = new App(favorites)
+
+    function addCity() {
+        search()
+        const favCity = new City(city, app)
+        app.addCity(favCity)
+        showHome()
+        input.value = ''
     }
+
+    input.oninput = () => {
+        city = input.value
+        if (city) {
+            fetch(`https://api.weatherapi.com/v1/search.json?key=${API_KEY}&q=${city}`)
+                .then(response => {
+                    if (response.ok) {
+                        let newOption
+                        response.json()
+                            .then(data => {
+                                newOption = filter(input.value, data)
+                                newOption.map(item => {
+                                    if (item.name)
+                                        createOptions(data)
+                                })
+                            })
+                    }
+                })
+        }
+    }
+
+    input.onchange = () => {
+        while (dataList.firstChild) {
+            dataList.removeChild(dataList.firstChild)
+        }
+    }
+
+    function changeTheme() {
+        if (document.body.className === 'dark') {
+            themeBtn.innerText = 'Dark'
+            isDark = false
+        } else {
+            themeBtn.innerText = 'Light'
+            isDark = true
+        }
+        init()
+    }
+
+    searchBtn.addEventListener('click', () => {
+        addCity()
+    })
+
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            addCity()
+        }
+    })
+
+    themeBtn.addEventListener('click', changeTheme)
+
+    favorites.addEventListener('click', (e) => {
+        app.removeCity(e.target.dataset.value)
+        init()
+    })
+
+    navWrap.addEventListener('click', (el) => {
+        const location = el.target.dataset.href
+        if (location) {
+            router(location)
+        }
+    })
+    const location = window.location.hash
+    router(location)
 }
-
-favorites.addEventListener('click', (e) => {
-    app.removeCity(e.target.dataset.value)
-    init()
-})
-
-const app = new App(favorites)
 
 function showFavorites() {
     favorites.classList.remove('hide')
@@ -201,14 +201,6 @@ function showHome() {
     wrap.classList.remove('hide')
 }
 
-window.addEventListener('load', () => {
-    const location = window.location.hash
-    router(location)
-})
+export {API_KEY, city, dataList, isDark, input, showHome, showFavorites, filter}
 
-navWrap.addEventListener('click', (el) => {
-    const location = el.target.dataset.href
-    if (location) {
-        router(location)
-    }
-})
+

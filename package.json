@@ -1,5 +1,15 @@
 {
   "name": "level0",
+  "jest": {
+    "moduleFileExtensions": ["js", "json", "es6"],
+    "moduleDirectories": ["node_modules", "bower_components", "shared"],
+    "transformIgnorePatterns": ["/node_modules/(?!test-component).+\\.js$"],
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
+      "\\.(css|less)$": "identity-obj-proxy"
+    },
+    "testEnvironment": "jsdom"
+  },
   "version": "1.0.0",
   "description": "weatherApp",
   "private": true,
@@ -13,6 +23,7 @@
   "author": "Vl_IV",
   "license": "ISC",
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.16.0",
     "clean-webpack-plugin": "^4.0.0",
     "cross-env": "^7.0.3",
     "css-loader": "^6.4.0",
@@ -21,6 +32,7 @@
     "eslint-webpack-plugin": "^3.0.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.4.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^27.3.1",
     "style-loader": "^3.3.0",
     "terser-webpack-plugin": "^5.2.4",

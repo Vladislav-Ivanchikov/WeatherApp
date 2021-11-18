@@ -19,7 +19,6 @@ const optimization = () => {
     return config
 }
 
-
 module.exports = {
     context: path.resolve(__dirname, 'src'),
     mode: 'development',

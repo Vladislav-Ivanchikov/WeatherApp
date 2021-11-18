@@ -1,9 +1,6 @@
-import {API_KEY, city, isDark} from './data'
-
-export { wrap, input, navWrap, searchBtn, themeBtn, createTemplate, isDark }
+import {API_KEY, city, isDark, input} from './data'
 
 const wrap = document.getElementById('wrap')
-const input = document.getElementById('search-city')
 const navWrap = document.getElementById('nav')
 const searchBtn = document.getElementById('btn')
 const themeBtn = document.getElementById('theme-btn')
@@ -86,10 +83,11 @@ function createTemplate(data) {
     fetch(`http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${city}&days=7&aqi=no&alerts=no`)
         .then(resp => resp.json())
         .then(data => {
+            let today = `${new Date().getDate()}.${new Date().getMonth() + 1}`
             document.querySelectorAll('.day').forEach((i, index) => {
                 let date = data.forecast.forecastday[index].date.slice(5).split('-');
                 [date[0], date[1]] = [date[1], date[0]]
-                i.textContent = date.join('.')
+                i.textContent = date.join('.') === today ? 'Today' : date.join('.')
             })
             document.querySelectorAll('.f_icon').forEach((i, index) => {
                 i.src = data.forecast.forecastday[index].day.condition.icon
@@ -97,7 +95,9 @@ function createTemplate(data) {
             document.querySelectorAll('.forecast-temp').forEach((i, index) => {
                 i.textContent = `from ${Math.floor(data.forecast.forecastday[index].day.mintemp_c)} to ${Math.floor(data.forecast.forecastday[index].day.maxtemp_c)} °C`
             })
-        })
+        }).catch(() => {
+            alert('Forecast not load')
+    })
 
     if (isDark) {
         document.body.classList.add('dark')
@@ -131,3 +131,5 @@ function createTemplate(data) {
         document.querySelectorAll('.city-temp').forEach(i => i.classList.remove('dark'))
     }
 }
+
+export { wrap, navWrap, searchBtn, themeBtn, createTemplate, isDark}
