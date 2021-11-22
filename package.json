@@ -1,14 +1,25 @@
 {
   "name": "level0",
   "jest": {
-    "moduleFileExtensions": ["js", "json", "es6"],
-    "moduleDirectories": ["node_modules", "bower_components", "shared"],
-    "transformIgnorePatterns": ["/node_modules/(?!test-component).+\\.js$"],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "bower_components",
+      "shared"
+    ],
+    "transformIgnorePatterns": [
+      "/node_modules/(?!test-component).+\\.js$"
+    ],
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "identity-obj-proxy"
     },
-    "testEnvironment": "jsdom"
+    "testEnvironment": "jsdom",
+    "collectCoverage": true
   },
   "version": "1.0.0",
   "description": "weatherApp",
@@ -41,6 +52,9 @@
     "xml-loader": "^1.2.1"
   },
   "dependencies": {
+    "buffer": "^6.0.3",
+    "net": "^1.0.2",
+    "node-fetch": "^3.1.0",
     "webpack-dev-server": "^4.3.1"
   }
 }

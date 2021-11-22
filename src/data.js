@@ -1,9 +1,11 @@
+//const fetch = (url) => import('node-fetch').then(({default: fetch}) => fetch(url));
 import "./styles/styles.css"
-import {wrap, navWrap, searchBtn, themeBtn, createTemplate} from './createTemplate'
-import router from "./router";
-import createOptions from './createOptions'
+import {wrap, navWrap, searchBtn, themeBtn, createTemplate} from './modules/createTemplate'
+import router from "./modules/router";
+import createOptions from './modules/createOptions'
+
 const API_KEY = '3a1c537e919545d1bf9114546212110';
-let city = 'gomel';
+let city = 'london';
 let isDark = false;
 const closeCross = 'https://cdn-icons.flaticon.com/png/512/656/premium/656958.png?token=exp=1635848007~hmac=ea047b966e3cefad02516927880ae3b5'
 
@@ -106,6 +108,8 @@ window.onload = () => {
                 cityName.forEach(c => {
                     c.addEventListener('click', e => {
                         city = e.target.innerText
+                        init()
+                        window.location.hash = '/'
                         showHome()
                     })
                 })
@@ -142,6 +146,8 @@ window.onload = () => {
                                         createOptions(data)
                                 })
                             })
+                    }else {
+                        alert('Weather data not load')
                     }
                 })
         }
@@ -202,5 +208,3 @@ function showHome() {
 }
 
 export {API_KEY, city, dataList, isDark, input, showHome, showFavorites, filter}
-
-

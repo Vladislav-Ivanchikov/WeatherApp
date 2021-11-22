@@ -29,10 +29,13 @@ module.exports = {
     },
     optimization: optimization(),
     devServer: {
+        static: {
+            directory: path.join(__dirname, 'public'),
+        },
+        compress: true,
         port: 4200,
-        hot: isDev
     },
-    devtool: isDev ? 'source-map' : '',
+
     plugins: [
         new HtmlWebpackPlugin({
             template: "./index.html",

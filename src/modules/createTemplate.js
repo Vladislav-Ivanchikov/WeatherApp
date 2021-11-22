@@ -1,4 +1,4 @@
-import {API_KEY, city, isDark, input} from './data'
+import {API_KEY, city, isDark, input} from '../data'
 
 const wrap = document.getElementById('wrap')
 const navWrap = document.getElementById('nav')

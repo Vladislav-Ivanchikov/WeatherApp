@@ -1,4 +1,4 @@
-import {dataList} from "./data";
+import {dataList} from '../data';
 
 export default function createOptions(data) {
     dataList.innerHTML = ''

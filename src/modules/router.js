@@ -1,4 +1,4 @@
-import {init, showHome, showFavorites} from "./data";
+import {init, showHome, showFavorites} from "../data";
 
 export default function router(location) {
     switch (location) {
