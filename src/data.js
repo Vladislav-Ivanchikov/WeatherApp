@@ -1,4 +1,3 @@
-//const fetch = (url) => import('node-fetch').then(({default: fetch}) => fetch(url));
 import "./styles/styles.css"
 import {wrap, navWrap, searchBtn, themeBtn, createTemplate} from './modules/createTemplate'
 import router from "./modules/router";

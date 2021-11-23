@@ -20,18 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0a85faf1-d19b-4be8-9603-67392d84f4a6" name="Default Changelist" comment="second">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/__mocks__/fetchMock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/__test__/data.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/__test__/data.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/createOptions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/createOptions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/createTemplate.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/createTemplate.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/router.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/modules/router.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/main.bundle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/styles/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/styles/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +164,9 @@
       <workItem from="1637147112254" duration="8246000" />
       <workItem from="1637223176941" duration="16544000" />
       <workItem from="1637309314543" duration="19201000" />
-      <workItem from="1637567623696" duration="9205000" />
+      <workItem from="1637567623696" duration="11041000" />
+      <workItem from="1637594766247" duration="2000" />
+      <workItem from="1637658454259" duration="287000" />
     </task>
     <task id="LOCAL-00001" summary="second">
       <created>1636703747947</created>
